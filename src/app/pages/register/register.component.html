@@ -1,0 +1,54 @@
+<div class="container is-fluid is-center" style="margin-top: 2rem;">
+    <div class="columns is-mobile">
+      <div class="column is-half is-offset-one-quarter">
+        <div class="card">
+          <div class="card-image">
+            <div class="image-login">
+              <img src="../../../assets/img/login-icon1.png" width="150" height="150" alt="Image">
+            </div>
+          </div>
+          <div class="card-content" style="text-align:center">
+            <p style="font-size: 23px !important">Register</p>
+            <br>
+            <form class="box" [formGroup]="registrationForm" (ngSubmit)="register()">
+              <div class="field">
+                <label class="label">Username</label>
+                <div class="control">
+                  <input class="input" type="text" formControlName="username" placeholder="Alex">
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                  <input class="input" type="email" formControlName="email" placeholder="e.g. alex@example.com">
+                </div>
+              </div>
+            
+              <div class="field">
+                <label class="label">Password</label>
+                <div class="control">
+                  <input class="input" type="password" formControlName="password" placeholder="********">
+                </div>
+              </div>
+            
+           
+
+              <div class="field">
+                <label class="label">Role</label>
+                <div class="control">
+                  <select formControlName="role">
+                    <option *ngFor="let item of roleList" [value]="item">{{item.name}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" class="button is-primary">Sign in</button>
+            </form>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

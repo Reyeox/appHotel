@@ -1,1 +1,35 @@
-<p>login works!</p>
+<div class="container is-fluid is-center" style="margin-top: 2rem;">
+  <div class="columns is-mobile">
+    <div class="column is-half is-offset-one-quarter">
+      <div class="card">
+        <div class="card-image">
+          <div class="image-login">
+            <img src="../../../assets/img/login-icon1.png" width="150" height="150" alt="Image">
+          </div>
+        </div>
+        <div class="card-content" style="text-align:center">
+          <p style="font-size: 23px !important">Inicio sesión</p>
+          <br>
+          <form class="box" [formGroup]="User">
+            <div class="field">
+              <label class="label">Correo electrónico</label>
+              <div class="control">
+                <input class="input" type="email" formControlName="email" placeholder="e.g. alex@example.com">
+              </div>
+            </div>
+          
+            <div class="field">
+              <label class="label">Password</label>
+              <div class="control">
+                <input class="input" type="password" formControlName="password" placeholder="********">
+              </div>
+            </div>
+          
+            <button class="button is-primary">Ingresar</button>
+          </form>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

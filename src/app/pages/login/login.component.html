@@ -10,7 +10,7 @@
         <div class="card-content" style="text-align:center">
           <p style="font-size: 23px !important">Inicio sesión</p>
           <br>
-          <form class="box" [formGroup]="User">
+          <form class="box" (ngSubmit)="login()" [formGroup]="registrationForm">
             <div class="field">
               <label class="label">Correo electrónico</label>
               <div class="control">
@@ -25,7 +25,7 @@
               </div>
             </div>
           
-            <button class="button is-primary">Ingresar</button>
+            <button type="submit" class="button is-primary">Ingresar</button>
           </form>
          
         </div>

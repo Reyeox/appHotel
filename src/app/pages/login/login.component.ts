@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/core/services/user.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService,
   ) {
     this.registrationForm = this.formBuilder.group({
       username: ['', [Validators.required]],
@@ -28,18 +30,19 @@ export class LoginComponent {
   }
 
   
-
-  //Methods to login 
-
-
+  //Methods to login
   login(): void{
-    this.userService.login(this.registrationForm.value.email, this.registrationForm.value.password).then(el=>{
+    console.log(this.registrationForm.get('email')?.value);
+    this.userService.login(this.registrationForm.get('email')?.value, this.registrationForm.get('password')?.value).then(el=>{
       if(el){
         console.log("User logged successfully.");
-        this.router.navigateByUrl('/');
+        this.toastr.success('Inicio de sesión correcto.','Inicio de sesión');
+        setTimeout(() => {
+          this.router.navigateByUrl('/')
+        }, 1000);
       }else{
-        console.log("User no logged.");
-        
+        console.log("User no registered.");
+        this.toastr.error('No se encuentra registrado un usuario con el email: ' + this.registrationForm.get('email')?.value);
       }
     }).catch(error=>{
       console.log(error);

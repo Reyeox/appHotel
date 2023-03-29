@@ -23,11 +23,11 @@ export class UserService {
   }
 
   // login a user by updating their "isLogged" property to true
-  login(username: string, password: string): Promise<boolean> {
+  login(email: string, password: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
       try {
         let users: User[] = JSON.parse(localStorage.getItem('users') || '[]');
-        let userIndex = users.findIndex(user => user.username === username && user.password === password);
+        let userIndex = users.findIndex(user => user.email === email && user.password === password);
         if (userIndex >= 0) {
           users[userIndex].isLogged = true;
           localStorage.setItem('users', JSON.stringify(users));

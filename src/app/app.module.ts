@@ -7,17 +7,20 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
-
+import { ToastrModule } from 'ngx-toastr';
+import { HotelsComponent } from './pages/hotels/hotels.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HotelsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ToastrModule.forRoot(),
     ReactiveFormsModule,
   ],
   providers: [],

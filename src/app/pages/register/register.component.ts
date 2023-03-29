@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/core/services/user.service';
 import { User } from 'src/app/core/data/models/User';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'register',
@@ -28,7 +29,8 @@ export class RegisterComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private toastrService: ToastrService,
   ) {
     this.registrationForm = this.formBuilder.group({
       username: ['', [Validators.required]],
@@ -45,16 +47,17 @@ export class RegisterComponent {
         email: this.registrationForm.value.email,
         password: this.registrationForm.value.password,
         isLogged: false,
-        role: 'user'
+        role: ''
       };
       this.userService.createUser(newUser)
         .then(() => {
-          console.log('User created successfully!');
+          this.toastrService.success('Usuario creado correctamente.','Registro');
+          this.registrationForm.reset();
+          // this.registrationForm.
           // optionally redirect to login page or display success message
         })
-        .catch(error => {
-          console.error('An error occurred:', error);
-          this.errorMessage = 'Failed to create user. Please try again.';
+        .catch(()=> {
+          this.toastrService.error('Falló al crear un nuevo usuario, por favor intenta de nuevo.','Error');
         });
     }
   }
